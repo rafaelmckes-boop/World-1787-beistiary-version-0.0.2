@@ -1,0 +1,309 @@
+/* =========================
+   General Medieval Style
+   ========================= */
+body {
+    font-family: 'Garamond', serif;
+    background: radial-gradient(circle at 50% 50%, #f3e8dc 0%, #e2d2bc 100%);
+    color: #3b2e2a;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: url('quill.png'), auto; /* Quill cursor */
+}
+
+/* =========================
+   Titles & Fonts
+   ========================= */
+h1, h2 {
+    font-family: 'Uncial Antiqua', 'Garamond', serif;
+    text-shadow: 2px 2px #c8b29b;
+}
+
+/* Body text */
+body, p {
+    font-family: 'Garamond', serif;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* =========================
+   Cover Page
+   ========================= */
+.cover {
+    text-align: center;
+    border: 5px solid #8b5e3c;
+    padding: 500px;
+    background: #fff8f0 url('parchment-texture.jpg') repeat; /* Optional texture */
+    box-shadow: 0 0 50px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,240,200,0.2);
+    animation: parchmentFlutter 2s ease-in-out infinite alternate;
+}
+
+/* =========================
+   Categories
+   ========================= */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    font-family: 'Garamond', serif;
+    font-size: 1.2em;
+    padding: 15px 25px;
+    border: 3px solid #8b5e3c;
+    background-color: #fdf0e1;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 2px 2px #c8b29b;
+}
+
+button:hover {
+    background-color: #fbe5d6;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px gold, 0 0 30px rgba(255, 215, 0, 0.3);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* =========================
+   Search Bar
+   ========================= */
+#searchBar {
+    padding: 12px 20px;
+    width: 60%;
+    max-width: 500px;
+    font-size: 1.2em;
+    font-family: 'Garamond', serif;
+    background-color: #fdf0e1; /* parchment color */
+    border: 3px solid #8b5e3c;
+    border-radius: 8px;
+    box-shadow: inset 2px 2px #c8b29b, 2px 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#searchBar:focus {
+    outline: none;
+    box-shadow: 0 0 15px gold, inset 2px 2px #c8b29b;
+    transform: scale(1.02);
+}
+
+#searchBar::placeholder {
+    color: #8b5e3c;
+    font-style: italic;
+}
+
+/* =========================
+   Mute Button
+   ========================= */
+#muteBtn {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 1.2em;
+    font-family: 'Garamond', serif;
+    background-color: #fdf0e1;
+    border: 3px solid #8b5e3c;
+    border-radius: 6px;
+    box-shadow: 2px 2px #c8b29b;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#muteBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px gold, 2px 2px #c8b29b;
+}
+
+/* =========================
+   Category Pages
+   ========================= */
+.category-page {
+    max-width: 900px;
+    margin: 150px auto;
+    background-color: #fff8f0;
+    border: 5px solid #8b5e3c;
+    padding: 500px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,240,200,0.2);
+    font-family: 'Garamond', serif;
+    animation: fadeIn 0.5s ease-out, parchmentFlutter 2s ease-in-out infinite alternate;
+}
+
+.category-page h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-top: 100;    /* remove top margin */
+}
+
+
+.category-page p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.category-page button {
+    display: block;
+    margin: 40px auto 0;
+    font-size: 1.2em;
+    padding: 12px 20px;
+}
+
+/* =========================
+   Entries / Items
+   ========================= */
+.entries, .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.entry, .item {
+    border: 3px solid #8b5e3c;
+    padding: 20px;
+    width: 250px;
+    background-color: #fdf0e1;
+    text-align: center;
+    box-shadow: 2px 2px #c8b29b;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.entry:hover, .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px gold, 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.entry img, .item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   Subcategories
+   ========================= */
+.subcategories {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.subcat h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+/* =========================
+   Character Detail Page
+   ========================= */
+.character-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
+
+.char-image img {
+    max-width: 550px;
+    height: auto;
+    border: 3px solid #8b5e3c;
+    box-shadow: 2px 2px #c8b29b;
+}
+
+.char-lore {
+    flex: 1;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* =========================
+   Animations
+   ========================= */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+
+.map-container {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.world-map {
+    max-width: 50%;
+    height: auto;
+    border: 5px solid #8b5e3c;
+    box-shadow: 2px 2px #c8b29b;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.world-map:hover {
+    transform: scale(1.02);
+}
+
+.region {
+    position: absolute;
+    border: 2px solid rgb(104, 117, 104);
+    background-color: rgba(184, 178, 149, 0.2);
+    cursor: pointer;
+}
+
+.region:hover{
+    transform: scale(1.22);
+    background-color: rgba(255, 255, 255, 0.555);
+}
+
+#animated-title {
+    font-family: 'Uncial Antiqua', 'Garamond', serif;
+    font-size: 3em;
+    color: #3b2e2a;
+    text-shadow: 2px 2px #c8b29b;
+    white-space: nowrap;          /* Prevent line breaks */
+    overflow: hidden;             /* Hide overflow for typing effect */
+    border-right: 3px solid #8b5e3c; /* Cursor effect */
+    width: 0;                     /* Start hidden */
+}
+
+.statsbutton {
+    background-color: rgba(156, 99, 25, 0.603);
+}
+
+.stats-popup {
+    display: none; /* hidden by default */
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #fdf0e1; /* parchment style */
+    border: 3px solid #8b5e3c;
+    border-radius: 8px;
+    box-shadow: 2px 2px #c8b29b;
+    padding: 20px;
+    font-family: 'Garamond', serif;
+    text-align: left;
+}
+
+.stats-popup h2 {
+    font-family: 'Uncial Antiqua', serif;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.stats-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.stats-popup li {
+    padding: 5px 0;
+    font-size: 1.1em;
+}

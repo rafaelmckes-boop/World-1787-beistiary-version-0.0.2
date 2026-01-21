@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval Bestiary</title>
+
+    <!-- Medieval font -->
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+        /* ----- General Medieval Style ----- */
+        body {
+            font-family: 'Garamond', serif;
+            background: radial-gradient(circle at 50% 50%, #f3e8dc 0%, #e2d2bc 100%);
+            color: #3b2e2a;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: url('quill.png'), auto;
+            /* quill cursor */
+        }
+
+        /* ----- Cover Container ----- */
+        .cover {
+            text-align: center;
+            border: 5px solid #8b5e3c;
+            padding: 50px;
+            background: #fff8f0 url('parchment-texture.jpg') repeat;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 240, 200, 0.2);
+            max-width: 900px;
+            width: 90%;
+        }
+
+        /* ----- Animated Title ----- */
+        #animated-title {
+            font-family: 'Uncial Antiqua', 'Garamond', serif;
+            font-size: 3em;
+            color: #3b2e2a;
+            text-shadow: 2px 2px #c8b29b;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #8b5e3c;
+            /* blinking cursor */
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                border-color: #8b5e3c;
+            }
+
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        #animated-title.blink {
+            animation: blink 1s step-start infinite;
+        }
+
+        /* ----- Search Bar ----- */
+        #searchBar {
+            padding: 12px 20px;
+            width: 60%;
+            max-width: 500px;
+            font-size: 1.2em;
+            font-family: 'Garamond', serif;
+            background-color: #fdf0e1;
+            border: 3px solid #8b5e3c;
+            border-radius: 8px;
+            box-shadow: inset 2px 2px #c8b29b, 2px 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 20px 0;
+        }
+
+        #searchBar:focus {
+            outline: none;
+            box-shadow: 0 0 15px gold, inset 2px 2px #c8b29b;
+            transform: scale(1.02);
+        }
+
+        #searchBar::placeholder {
+            color: #8b5e3c;
+            font-style: italic;
+        }
+
+        /* ----- Category Buttons ----- */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .categories button {
+            font-family: 'Garamond', serif;
+            font-size: 1.2em;
+            padding: 15px 25px;
+            border: 3px solid #8b5e3c;
+            background-color: #fdf0e1;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 2px 2px #c8b29b;
+        }
+
+        .categories button:hover {
+            background-color: #fbe5d6;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 15px gold, 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ----- Mute Button ----- */
+        #muteBtn {
+            margin-top: 20px;
+            padding: 8px 12px;
+            font-size: 1.2em;
+            font-family: 'Garamond', serif;
+            background-color: #fdf0e1;
+            border: 3px solid #8b5e3c;
+            border-radius: 6px;
+            box-shadow: 2px 2px #c8b29b;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #muteBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px gold, 2px 2px #c8b29b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="medieval-ambient.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Main Cover -->
+    <div class="cover">
+        <h1 id="animated-title"></h1>
+        <p>Choose a category to explore:</p>
+
+        <!-- Search Bar -->
+        <input type="text" id="searchBar" placeholder="Search categories...">
+
+        <!-- Category Buttons -->
+        <div class="categories">
+            <button data-href="humans/humans.html">Humans</button>
+            <button data-href="anomalies/anomalies.html">Anomalies</button>
+            <button data-href="insolence/insolence.html">Insolence</button>
+            <button data-href="others/others.html">Others</button>
+            <button data-href="map.html">Map</button>
+            <button data-href="structures/structures.html">Structures</button>
+
+
+        </div>
+
+        <!-- Mute Button -->
+        <button id="muteBtn" title="Mute/Unmute Music">🔊</button>
+    </div>
+
+    <!-- JS for animations, search, audio -->
+    <script>
+        // ----- Typewriter Animated Title -----
+        const title = document.getElementById('animated-title');
+        const titleText = "Bestiary of World 1787";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < titleText.length) {
+                title.textContent += titleText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 120);
+            } else {
+                title.classList.add('blink'); // blinking cursor ends animation
+            }
+        }
+        typeWriter();
+
+        // ----- Button Click Sound -----
+        const clickSound = new Audio('click.mp3');
+        const buttons = document.querySelectorAll('.categories button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.play().catch(err => { });
+                window.location.href = btn.dataset.href; // navigate
+            });
+        });
+
+        // ----- Search Bar Filter -----
+        const searchBar = document.getElementById('searchBar');
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+            buttons.forEach(btn => {
+                const text = btn.textContent.toLowerCase();
+                btn.style.display = text.includes(query) ? 'inline-block' : 'none';
+            });
+        });
+
+        // ----- Mute/Unmute Music -----
+        const bgMusic = document.getElementById('bg-music');
+        const muteBtn = document.getElementById('muteBtn');
+
+        muteBtn.addEventListener('click', () => {
+            if (bgMusic.muted) {
+                bgMusic.muted = false;
+                muteBtn.textContent = '🔊';
+            } else {
+                bgMusic.muted = true;
+                muteBtn.textContent = '🔇';
+            }
+        });
+    </script>
+</body>
+
+</html>
